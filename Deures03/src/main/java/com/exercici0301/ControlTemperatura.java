@@ -2,20 +2,37 @@ package com.exercici0301;
 
 public class ControlTemperatura {
 
-    public ControlTemperatura(String nomZona, double temperatura) {
+    private String nomZona;
+    private double temperatura;
+    private static double temperaturaTotal;
+    private static int comptadorZones;
 
+    public ControlTemperatura(String nomZona, double temperatura) {
+        this.nomZona = nomZona;
+        this.temperatura = temperatura;
+        temperaturaTotal += temperatura;
+        comptadorZones++;
+    }
+
+    public String getNomZona() {
+        return nomZona;
     }
 
     public double getTemperatura() {
-        return 0.0;
+        return temperatura;
     }
 
     public void ajustaTemperatura(double novaTemperatura) {
-
+        temperaturaTotal -= temperatura;
+        temperatura = novaTemperatura;
+        temperaturaTotal += novaTemperatura;
     }
 
     public static double getTemperaturaMitjana() {
-        return 0.0;
+        if (comptadorZones == 0) {
+            return 0;
+        } 
+        return temperaturaTotal / comptadorZones;
     }
 }
 
